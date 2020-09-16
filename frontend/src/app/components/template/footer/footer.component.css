@@ -1,0 +1,19 @@
+.portifolio-link {
+    text-decoration: none;
+    color: blueviolet;
+    transition: 1s ;
+    font-weight: 500;
+}
+
+.portifolio-link:hover {
+    opacity: 1;
+   
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+}
