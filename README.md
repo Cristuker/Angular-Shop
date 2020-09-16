@@ -1,4 +1,4 @@
-# learn-angular
+# Angular-Shop
 
 Projeto criado para aprender e entender o funcionamento do Angular.
 
@@ -20,6 +20,5 @@ $ cd frontend
 $ ng serve --open
 ```
 
-Angular.json tem as configurações do projeto
 
 <p align="center">Made whit ❤️ by <strong><a href="http://linkedin.com/in/cristian-silva-dev" target="blank" >Cristian</></p></strong>
