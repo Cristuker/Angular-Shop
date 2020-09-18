@@ -151,3 +151,139 @@ Ou seja os observer REAGEM a notificação do subject. Nesse padrão o observer 
 
 ***Evolução***
 Callbacks -> Promises -> Observables (Reusavel, Stream de dados, Operados)
+
+## Services
+
+Classes que compartilham e organizam códigos entre componentes. Também posso usar services dentro de diretivas.
+Lógicas que não dizem respeito em que o componente faz vão para dentro do service. Sempre separando as lógicas dentro do service
+de forma coerente(SOLID)
+
+O service é usado dentro do componente através da injeção de dependencias.
+
+Dentro do service
+```javascript
+@Injectable({
+    providedIn: "root", // Significa que vou ter apenas UMA instância do product service em toda a aplicação
+})
+export class ProductService{
+    //Code here
+}
+```
+Ou seja no componente X eu adiciono 3 produtos ao service de carrinho e chamo o mesmo serivce no componente Y logo após, os 3 mesmo produtos estarão lá.
+
+    Lembra do estado no react? Redux e pipipopo lembrei dele
+
+
+> Padrão de projeto ***Singleton***
+
+#### Injeção de Dependência
+
+É um padrão no qual a classe recebe as ***dependências*** de uma ***fonte externa*** ao invés de criar por conta própria.
+
+##### Sem injeção de Dependência
+
+Você cria uma instância novo de motor ou seja a classe carro que instanciou o motor e não houve injeção de dependência.
+
+Cenário 1
+```javascript
+//Classe carro
+
+class Carro{
+    motor: Motor
+
+    constructor(){
+        this.motor = new Motor()
+    }
+}
+
+// Classe Motor
+
+class Motor {
+
+}
+```
+
+Cenário 2
+```javascript
+//Classe carro
+
+class Carro{
+    motor: Motor
+
+    constructor(){
+        this.motor = new Motor() //Temos um erro por não passar a cilidrada para a classe motor
+    }
+}
+
+// Classe Motor
+
+class Motor {
+    cilindrada: number
+
+    constructor(cilindrada: cilidrada){
+        this.cilindrada = cilindrada;
+    }
+
+}
+```
+
+Ou seja sempre que algo for alterado na classe motor será necessário refatorar para que não tenha erro todas as classes que usam o motor
+
+##### Com injeção de Dependência
+
+Você passa o motor como parametro. Ou seja ela já está pronta para uso e construida
+
+Cenário 1
+```javascript
+//Classe carro
+
+class Carro{
+    motor: Motor
+
+    constructor(motor: Motor){
+        this.motor = motor
+    }
+}
+
+// Classe Motor
+
+class Motor {
+    cilindrada: number
+
+    constructor(cilindrada: cilidrada){
+        this.cilindrada = cilindrada;
+    }
+}
+```
+Quando uma classe é marcada com @Injectable ela é instanciada para toda a aplicação Angualr. E quando eu uso  o service dentro do componente ele passa essa classe já instancia para dentro do componente.
+
+**Que fique claro quem cria as instancias do serivces é o Angular**
+
+```javascript
+@Injectable({
+    providedIn: "root", /* root seria um alias para AppModule ou
+    seja o providedIn é o AppModule.
+    Você também pode apontar para um modulo dentro do providedIn porém será 
+    o import do modulo as aspas é apenas para o root.
+    */
+})
+export class ProductService{
+    //Code here
+}
+```
+```javascript
+//Services são singletons dentro do escopo de um injetor 
+GruposDeInjetores:[
+    ModuleInject: { /* Quando estiver usando um desses dois vc 
+    esta usando o injetor de modulo */
+        @NgModule,
+        @Injectable
+    }, 
+    ElementInjector: {
+    /* Instância própria, uma instância nova exclusiva pro componente */
+        @Directive
+        @Component
+    }
+]
+
+```

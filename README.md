@@ -25,4 +25,7 @@ $ ng serve --open
 
 Algumas anotações feitas durante o curso <a href="https://github.com/Cristuker/learn-angular/blob/master/Annotations.md">aqui</a>
 
+
+#
+
 <p align="center">Made whit ❤️ by <strong><a href="http://linkedin.com/in/cristian-silva-dev" target="blank" >Cristian</></p></strong>
