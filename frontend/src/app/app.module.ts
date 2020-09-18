@@ -11,14 +11,16 @@ import { FooterComponent } from './components/template/footer/footer.component';
 import { NavComponent } from './components/template/nav/nav.component'
 
 import { MatListModule } from '@angular/material/list'
-import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HomeComponent } from './views/home/home.component'
 @NgModule({
   // Declaração de componentes, diretivas e pipes
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent
   ],
   // Importações de outros modulos, modulo seu ou de uma lib externa
   imports: [
