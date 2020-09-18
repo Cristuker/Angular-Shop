@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent,FooterComponent,NavComponent } from './components';
 import { HomeComponent, ProductCrudComponent } from './views/';
 import { RedDirective } from './directives/red.directive';
+import { ForDirective } from './directives/for.directive';
 @NgModule({
   // Declaração de componentes, diretivas e pipes
   declarations: [
@@ -22,7 +23,8 @@ import { RedDirective } from './directives/red.directive';
     NavComponent,
     HomeComponent,
     ProductCrudComponent,
-    RedDirective
+    RedDirective,
+    ForDirective
   ],
   // Importações de outros modulos, modulo seu ou de uma lib externa
   imports: [
