@@ -10,10 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HeaderComponent,FooterComponent,NavComponent } from './components';
+import { HeaderComponent, FooterComponent, NavComponent, ProductCreateComponent } from './components';
 import { HomeComponent, ProductCrudComponent } from './views/';
 import { RedDirective } from './directives/red.directive';
-import { ProductCreateComponent } from './components/product/product-create/product-create.component';
 @NgModule({
   // Declaração de componentes, diretivas e pipes
   declarations: [
