@@ -17,12 +17,68 @@ Algumas anotações feitas durante os estudos.
 * Existem 2 tipos
 
 #### Aparência: 
-   Muda a cor de algo de acordo com o que o cliente fez
+   Muda a cor de algo de acordo com o que o cliente fez ou definir como no exemplo.
+   
+```javascript
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appRed]'
+})
+export class RedDirective {
+
+  constructor(private el: ElementRef) {
+    el.nativeElement.style.color = '#e35e6b';
+  }
+
+}
+
+```
+Usando a diretiva
+```html
+<i class="material-icons v-middle" appRed> favorite</i>
+```
 #### Comportamento:
    Fazer um get na api quando clica no botão
 #### Diretiva estrutural 
     Vem com * na frente e manipula a Dom (ngIf, ngFor)
 
+***Exemplo:***
+
+```javascript
+// Uma diretiva para fazer o for do que for passado a ela
+// for.directive.ts
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[myFor]'
+})
+export class ForDirective implements OnInit {
+
+
+  @Input('myForEm') numbers: number[]
+
+  constructor(private container: ViewContainerRef, private template: TemplateRef<any>) { 
+
+  }
+
+  ngOnInit(){
+    for(let number of this.numbers){
+      this.container.createEmbeddedView(this.template,{
+        $implicit: number
+      })
+    }
+  }
+
+}
+
+```
+Usando a diretiva. Para usar uma diretiva estrutura é necessário o * e então usar o nome aplicado a ela e passar os valores
+```html
+    <ul>
+        <li *myFor="let n Em [1,2,3] ">{{ n }}</li>
+    </ul>
+```
 ## Bindings
 
 #### Property Binding
