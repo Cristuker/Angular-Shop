@@ -22,11 +22,18 @@ import { MatSortModule } from '@angular/material/sort';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HeaderComponent, FooterComponent, NavComponent, ProductCreateComponent } from './components';
 import { HomeComponent, ProductCrudComponent } from './views/';
 import { RedDirective } from './directives/red.directive';
-import { ProductReadComponent } from './components/product/product-read/product-read.component';
-import { ProductRead2Component } from './components/product/product-read2/product-read2.component';
+import { 
+  HeaderComponent, 
+  FooterComponent, 
+  NavComponent, 
+  ProductCreateComponent, 
+  ProductRead2Component, 
+  ProductReadComponent, 
+  ProductUpdateComponent 
+} from './components';
+
 
 registerLocaleData(localePt);
 @NgModule({
@@ -41,7 +48,8 @@ registerLocaleData(localePt);
     RedDirective,
     ProductCreateComponent,
     ProductReadComponent,
-    ProductRead2Component
+    ProductRead2Component,
+    ProductUpdateComponent
   ],
   // Importações de outros modulos, modulo seu ou de uma lib externa
   imports: [

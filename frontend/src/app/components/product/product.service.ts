@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Observable } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class ProductService {
       duration: 3000,
       horizontalPosition: "right",
       verticalPosition: "top",
-    })
+    });
   }
 
   create(product: Product): Observable<Product> {
@@ -34,12 +34,17 @@ export class ProductService {
   }
 
   readById(id: string): Observable<Product> {
-    const url = `${this.baseURL}/${id}`
+    const url = `${this.baseURL}/${id}`;
     return this.http.get<Product>(url);
   }
 
   update(product: Product): Observable<Product> {
-    const url = `${this.baseURL}/${product.id}`
+    const url = `${this.baseURL}/${product.id}`;
     return this.http.put<Product>(url, product);
+  }
+
+  delete(product: Product): Observable<Product> {
+    const url = `${this.baseURL}/${product.id}`;
+    return this.http.delete<Product>(url);
   }
 }
