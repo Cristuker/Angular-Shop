@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
+import { Product } from '../product.model';
 
 @Component({
   selector: 'app-product-create',
@@ -9,17 +10,28 @@ import { Router } from '@angular/router';
 })
 export class ProductCreateComponent implements OnInit {
 
+
+  product: Product = {
+    name: '',
+    price: null
+  }
+
   constructor(private productService: ProductService, private router: Router ) { }
 
   ngOnInit(): void {
   }
 
   createProduct(): void {
-    this.productService.showMessage('Produto criado!')
+    // Subscribe é executado quando o evento a acontece. Ou seja o retorno da requisição que estava sendo observada.
+    this.productService.create(this.product).subscribe(() => { 
+      this.productService.showMessage('Produto criado!');
+      this.router.navigate(['/products']);
+    })
+    
   }
 
   cancel(): void {
-    this.router.navigate(['/products'])
+    this.router.navigate(['/products']);
   }
 
 }
