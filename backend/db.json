@@ -1,11 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Caneta BIC Azul",
-      "price": "10.00"
-    },
-    {
       "id": 2,
       "name": "Notebook Mac Pro",
       "price": "5500000"
@@ -14,11 +9,6 @@
       "id": 3,
       "name": "Sansung S20+ Ultra",
       "price": 7520.89
-    },
-    {
-      "name": "Lapis Preto Básico",
-      "price": 1.5,
-      "id": 4
     },
     {
       "name": "Xbox 360",

@@ -31,7 +31,8 @@ import {
   ProductCreateComponent, 
   ProductRead2Component, 
   ProductReadComponent, 
-  ProductUpdateComponent 
+  ProductUpdateComponent,
+  ProductDeleteComponent
 } from './components';
 
 
@@ -49,7 +50,8 @@ registerLocaleData(localePt);
     ProductCreateComponent,
     ProductReadComponent,
     ProductRead2Component,
-    ProductUpdateComponent
+    ProductUpdateComponent,
+    ProductDeleteComponent
   ],
   // Importações de outros modulos, modulo seu ou de uma lib externa
   imports: [
