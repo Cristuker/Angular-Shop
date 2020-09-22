@@ -9,7 +9,7 @@ import { Product } from './product.model';
 })
 export class ProductService {
 
-  baseURL = 'http://localhost:3001/products'
+  baseURL = 'http://localhost:3001/products';
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) {
 
@@ -24,6 +24,10 @@ export class ProductService {
   }
 
   create(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.baseURL, product) // O evento é quando tiver uma resposta da requisição.
+    return this.http.post<Product>(this.baseURL, product); // O evento é quando tiver uma resposta da requisição.
+  }
+
+  read(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.baseURL);
   }
 }
