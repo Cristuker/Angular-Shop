@@ -1,50 +1,71 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from "@angular/common/http";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
-import { Product } from './product.model';
+import { Product } from "./product.model";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: "root",
 })
 export class ProductService {
+    baseURL = "http://localhost:3001/products";
 
-  baseURL = 'http://localhost:3001/products';
+    constructor(private snackBar: MatSnackBar, private http: HttpClient) {}
 
-  constructor(private snackBar: MatSnackBar, private http: HttpClient) {
+    showMessage(msg: string, isError: boolean = false): void {
+        this.snackBar.open(msg, "X", {
+            duration: 3000,
+            horizontalPosition: "right",
+            verticalPosition: "top",
+            panelClass: isError ? ["msg-error"] : ["msg-sucess"],
+        });
+    }
 
-  }
+    create(product: Product): Observable<Product> {
+        return this.http.post<Product>(this.baseURL, product).pipe(
+            map((obj) => obj),
+            catchError((e) => this.errorHandler(e))
+        ); // O evento é quando tiver uma resposta da requisição.
+    }
 
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, 'X', {
-      duration: 600,
-      horizontalPosition: "right",
-      verticalPosition: "top",
-    });
-  }
+    read(): Observable<Product[]> {
+        return this.http.get<Product[]>(this.baseURL).pipe(
+            map((obj) => obj),
+            catchError((e) => this.errorHandler(e))
+        );
+    }
 
-  create(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.baseURL, product); // O evento é quando tiver uma resposta da requisição.
-  }
+    readById(id: string): Observable<Product> {
+        const url = `${this.baseURL}/${id}`;
+        return this.http.get<Product>(url).pipe(
+            map((obj) => obj),
+            catchError((e) => this.errorHandler(e))
+        );
+    }
 
-  read(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseURL);
-  }
+    update(product: Product): Observable<Product> {
+        const url = `${this.baseURL}/${product.id}`;
+        return this.http.put<Product>(url, product).pipe(
+            map((obj) => obj),
+            catchError((e) => this.errorHandler(e))
+        );
+    }
 
-  readById(id: string): Observable<Product> {
-    const url = `${this.baseURL}/${id}`;
-    return this.http.get<Product>(url);
-  }
+    delete(id: string): Observable<Product> {
+        const url = `${this.baseURL}/${id}`;
+        return this.http.delete<Product>(url).pipe(
+            map((obj) => obj),
+            catchError((e) => this.errorHandler(e))
+        );
+    }
 
-  update(product: Product): Observable<Product> {
-    const url = `${this.baseURL}/${product.id}`;
-    return this.http.put<Product>(url, product);
-  }
-
-  delete(id: string): Observable<Product> {
-    const url = `${this.baseURL}/${id}`;
-    return this.http.delete<Product>(url);
-  }
+    errorHandler(e: any): Observable<any> {
+        this.showMessage("Ocorreu um erro!", true);
+        console.log(e);
+        return EMPTY;
+    }
 }
